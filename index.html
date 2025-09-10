@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Cars Racing</title>
+  <style>
+    body {
+      background: #eee;
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    #raceTrack {
+      position: relative;
+      width: 700px;
+      height: 210px; /* 3 pistes de 70px */
+      margin: auto;
+      border: 2px solid black;
+      background: #a0d8f1; /* couleur de piste */
+    }
+
+    .lane {
+      position: absolute;
+      width: 100%;
+      height: 70px;
+      border-top: 1px solid black;
+    }
+
+    .lane img {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100px;
+    }
+
+    #finishLine {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 10px;
+      height: 100%;
+      background: repeating-linear-gradient(
+        45deg,
+        black 0 10px,
+        white 10px 20px
+      );
+    }
+
+    #startBtn {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #startBtn:hover:not(:disabled) {
+      background: darkred;
+    }
+
+    #startBtn:disabled {
+      background: gray;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <h1>🏁 Démarrez la course ! 🏁</h1>
+
+  <div id="raceTrack">
+    <div class="lane" style="top: 0;">
+      <img id="redCarImg" src="./flash.png" />
+    </div>
+    <div class="lane" style="top: 70px;">
+      <img id="greenCarImg" src="./green_car.png" />
+    </div>
+    <div class="lane" style="top: 140px;">
+      <img id="blueCarImg" src="./blue_car.png" />
+    </div>
+    <div id="finishLine"></div>
+  </div>
+
+  <button id="startBtn">🚦 Démarrer !</button>
+
+  <script type="module" src="./dist/main.js"></script>
+</body>
+</html>
