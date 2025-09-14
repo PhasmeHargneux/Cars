@@ -1,0 +1,16 @@
+# Ignorer les fichiers compilés et dossiers de build
+/dist
+
+# Ignorer les fichiers temporaires de l'éditeur
+*.log
+*.tmp
+*.swp
+
+# Ignorer les fichiers système
+.DS_Store
+Thumbs.db
+
+# Ignorer les dépendances (si tu utilises npm)
+node_modules/
+
+# Ignorer les fichiers de configuration utilisateur VS
