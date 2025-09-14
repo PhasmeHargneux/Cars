@@ -7,8 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const redImg = document.getElementById("redCarImg");
     const greenImg = document.getElementById("greenCarImg");
     const blueImg = document.getElementById("blueCarImg");
-    if (!startBtn || !redImg || !greenImg || !blueImg) {
-        console.error("⚠️ Impossible de trouver le bouton ou les images !");
+    const chronoSpan = document.getElementById("chrono");
+    if (!startBtn || !redImg || !greenImg || !blueImg || !chronoSpan) {
+        console.error("⚠️ Impossible de trouver le bouton, les images ou le chrono !");
         return;
     }
     startBtn.addEventListener("click", () => {
@@ -20,12 +21,18 @@ document.addEventListener("DOMContentLoaded", () => {
         let greenPos = 0;
         let bluePos = 0;
         const finish = 600;
+        let chrono = 0;
+        chronoSpan.textContent = "Chrono : 0.0s";
+        const chronoInterval = setInterval(() => {
+            chrono += 0.3;
+            chronoSpan.textContent = `Chrono : ${chrono.toFixed(1)}s`;
+        }, 300);
         const interval = setInterval(() => {
-            redCar.accelerate(10);
-            redPos += 10;
+            redCar.accelerate(25);
+            redPos += 25;
             redImg.style.left = redPos + "px";
-            const greenSpeed = Math.floor(Math.random() * 11) + 5;
-            const blueSpeed = Math.floor(Math.random() * 11) + 5;
+            const greenSpeed = Math.floor(Math.random() * 40);
+            const blueSpeed = Math.floor(Math.random() * 40);
             greenCar.accelerate(greenSpeed);
             greenPos += greenSpeed;
             greenImg.style.left = greenPos + "px";
@@ -37,9 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 greenCar.stop();
                 blueCar.stop();
                 clearInterval(interval);
+                clearInterval(chronoInterval);
+                // Actualise le chrono sur la page avant l'alerte
+                chronoSpan.textContent = `Chrono : ${chrono.toFixed(1)}s`;
                 const winner = redPos >= finish ? "McQueen" :
                     greenPos >= finish ? "Verdant" : "Dinoco";
-                alert(`🏁 ${winner} a gagné !`);
+                alert(`🏁 ${winner} a gagné !\nTemps : ${chrono.toFixed(1)}s`);
             }
         }, 300);
     });
